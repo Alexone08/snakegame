@@ -10,21 +10,21 @@ let score = 0;
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Disegna il cibo
-    ctx.fillStyle = '#be5dff'; // Giallo brillante
+    
+    ctx.fillStyle = '#be5dff'; 
     ctx.fillRect(food.x * 20, food.y * 20, 20, 20);
 
     // Disegna il serpente
     snake.forEach((segment, index) => {
-        ctx.fillStyle = index === 0 ? '#d32f2f' : '#4a148c'; // Testa rossa, corpo viola
+        ctx.fillStyle = index === 0 ? '#d32f2f' : '#4a148c'; 
         ctx.fillRect(segment.x * 20, segment.y * 20, 20, 20);
     });
 
-    // Muovi il serpente
+  
     const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
     snake.unshift(head);
 
-    // Controlla cibo
+  
     if (head.x === food.x && head.y === food.y) {
         score++;
         scoreDisplay.innerText = score;
@@ -34,7 +34,7 @@ function draw() {
         snake.pop();
     }
 
-    // Controllo per collisioni
+
     if (head.x < 0 || head.x >= canvas.width / 20 || head.y < 0 || head.y >= canvas.height / 20 || snake.slice(1).some(segment => segment.x === head.x && segment.y === head.y)) {
         clearInterval(game);
         alert('Game Over! Punteggio: ' + score);
